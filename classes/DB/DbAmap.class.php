@@ -12,7 +12,7 @@ class DbAmap extends PDO
 {
     const USER = 'root';
     const MDP = '';
-    const CONNECTION = 'localhost';
+    const CONNECTION = '54.36.99.52';
     const BDD = 'amapdata';
     private static $currentInstance;
 
