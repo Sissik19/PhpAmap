@@ -30,6 +30,11 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	padding: 0;
 	vertical-align: baseline;
 }
+
+.number{
+	width: 40px;
+}
+
 body {
 	line-height: 1;
 }

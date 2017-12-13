@@ -27,6 +27,7 @@ if (isset($_POST['montant']) && isset($_POST['date_cheque'])) {
     $object->setIdPersonne($_POST['id_personne']);
     $object->setDateCheque($_POST['date_cheque']);
     $object->setMontant($_POST['montant']);
+    $object->setNumero($_POST['numero']);
     $object->save();
     require __DIR__.'/../../libs/http.lib.php' ;
     redirect('?page=cheque/cheque') ;
@@ -64,12 +65,17 @@ echo "</tr>\n" ;
 
 echo "<tr>\n" ;
 echo " <td>Date<td>\n" ;
-echo " <td><input type='date' name='date_cheque'><td>\n" ;
+echo " <td><input type='date' name='date_cheque' required><td>\n" ;
 echo "</tr>\n" ;
 
 echo "<tr>\n" ;
 echo " <td>Montant<td>\n" ;
-echo " <td>",input_text('montant'),"<td>\n" ;
+echo " <td><input type='text' name='montant' required><td>\n" ;
+echo "</tr>\n" ;
+
+echo "<tr>\n" ;
+echo " <td>Numéro de chèque<td>\n" ;
+echo " <td><input type='text' name='numero' required><td>\n" ;
 echo "</tr>\n" ;
 
 echo "</tbody>\n" ;

@@ -37,7 +37,7 @@
 
                         <li class="page_item page-item-4"><a href="?page=cheque/cheque">Chèques</a></li>
                         <li class="page_item page-item-5"><a href="?page=pain/pain">Pains</a></li>
-                        <li class="page_item page-item-5"><a href="?page=formation/test">Test</a></li>
+                        <li class="page_item page-item-5"><a href="?page=commande/commande-semaine">Test</a></li>
 					</ul>
 				</div>
 			</nav><!-- #access -->

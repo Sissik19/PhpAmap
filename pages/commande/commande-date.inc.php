@@ -25,25 +25,25 @@ else{
     echo "<input type='submit' value='valider' name='submit'>" ;
 echo "</form>";
 
+require_once __DIR__ . '/../../libs/html.lib.php';
+$doc = HtmlDocument::getCurrentInstance();
+$doc->addUniqueHeader('title', "<title>commande</title>");
 
+echo "<h1>Liste des commandes</h1>\n";
+
+echo "<table>\n";
+echo "<thead>\n";
+echo "<tr>\n";
+echo " <th>Nom</th>\n";
+echo " <th>Prenom</th>\n";
+echo " <th>Date</th>\n";
+echo " <th>Montant (en €)</th>\n";
+echo " <th>Etat</th>\n";
+echo " <th></th>\n";
+echo "</tr>\n";
+echo "</thead>\n";
     if (isset($_POST['submit'])) {
-        require_once __DIR__ . '/../../libs/html.lib.php';
-        $doc = HtmlDocument::getCurrentInstance();
-        $doc->addUniqueHeader('title', "<title>commande</title>");
 
-        echo "<h1>Liste des commandes</h1>\n";
-
-        echo "<table>\n";
-        echo "<thead>\n";
-        echo "<tr>\n";
-        echo " <th>Nom</th>\n";
-        echo " <th>Prenom</th>\n";
-        echo " <th>Date</th>\n";
-        echo " <th>Montant (en €)</th>\n";
-        echo " <th>Etat</th>\n";
-        echo " <th></th>\n";
-        echo "</tr>\n";
-        echo "</thead>\n";
         echo "<tbody>\n";
         foreach ($tabObject as $object) {
             if($object['date_commande']===$_POST['date']) {
@@ -64,12 +64,9 @@ echo "</form>";
         }
 
         echo "</tbody>\n";
-        echo "</table>\n";
+
     }
+echo "</table>\n";
 
-
-
-
-echo "<a href='?page=commande/commande-create'><button>Ajouter nouveau</button></a>";
 
 ?>

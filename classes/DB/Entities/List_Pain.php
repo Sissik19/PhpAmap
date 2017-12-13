@@ -2,19 +2,17 @@
 /**
  * Created by PhpStorm.
  * User: Camille K
- * Date: 08/12/2017
- * Time: 11:58
+ * Date: 12/12/2017
+ * Time: 16:14
  */
-
-
 
 namespace DB;
 require_once (__DIR__."/../Entity.class.php") ;
 
+class List_Pain extends Entity{
 
-class Cheque extends Entity {
-    const TABLE = 'cheque';
-    const PRIMARYKEY = 'id_cheque';
+    const TABLE = 'list_pain';
+    const PRIMARYKEY = 'id_list_pain';
 
     public function __construct()
     {
@@ -33,13 +31,11 @@ class Cheque extends Entity {
         $sth = $bdd->prepare("SELECT * FROM ".self::TABLE." WHERE ".self::PRIMARYKEY." = ".$id);
         $sth->execute();
         $result = $sth->fetch(\PDO::FETCH_ASSOC);
-        $objet=new Cheque();
+        $objet=new List_Pain();
         $objet->hydrate([
             self::PRIMARYKEY => $id,
-            'id_personne' => $result['id_personne'],
-            'date_cheque' => $result['date_cheque'],
-            'montant' => $result['montant'],
-            'numero' => $result['numero'],
+            'id_pain' => $result['prix_total'],
+            'id_commande' => $result['id_commande'],
         ]);
         return $objet;
     }
@@ -57,4 +53,5 @@ class Cheque extends Entity {
         return $result;
     }
 }
+
 ?>

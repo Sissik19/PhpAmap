@@ -22,27 +22,30 @@ $doc->addUniqueHeader('title', "<title>cheque</title>") ;
 echo "<h1>Liste des chèques</h1>\n" ;
 
 echo "<table>\n" ;
-echo "<thead>\n" ;
-echo "<tr>\n" ;
-echo " <th>Nom</th>\n" ;
-echo " <th>Prenom</th>\n" ;
-echo " <th>Date</th>\n" ;
-echo " <th>Montant (en €)</th>\n" ;
-echo " <th></th>\n" ;
-echo "</tr>\n" ;
-echo "</thead>\n" ;
+    echo "<thead>\n" ;
+        echo "<tr>\n" ;
+            echo " <th>Nom</th>\n" ;
+            echo " <th>Prenom</th>\n" ;
+            echo " <th>Date</th>\n" ;
+            echo " <th>Montant (en €)</th>\n" ;
+            echo "<th>Numéro de chèque</th>\n";
+            echo " <th></th>\n" ;
+        echo "</tr>\n" ;
+    echo "</thead>\n" ;
 echo "<tbody>\n" ;
+
 foreach ($tabObject as $object) {
     echo "<tr>\n" ;
 
-    $personne = \DB\Personne::find($object['id_personne']);
+        $personne = \DB\Personne::find($object['id_personne']);
 
-    echo " <td>",htmlspecialchars($personne->getNom()),"</td>\n" ;
-    echo " <td>",htmlspecialchars($personne->getPrenom()),"</td>\n" ;
-    echo " <td>",htmlspecialchars($object['date_cheque']),"</td>\n" ;
-    echo " <td>",htmlspecialchars($object['montant']),"</td>\n" ;
-    echo "<td><a href='?page=cheque/cheque-modifier&id=".$object['id_cheque']."'><button>modifier</button></a></td>\n" ;
-    echo "<td><a href='?page=delete&id=".$object['id_cheque']."&table=".$table."'><button>supprimer</button></a></td>\n";
+        echo " <td>",htmlspecialchars($personne->getNom()),"</td>\n" ;
+        echo " <td>",htmlspecialchars($personne->getPrenom()),"</td>\n" ;
+        echo " <td>",htmlspecialchars($object['date_cheque']),"</td>\n" ;
+        echo " <td>",htmlspecialchars($object['montant']),"</td>\n" ;
+        echo " <td>",htmlspecialchars($object['numero']),"</td>\n" ;
+        echo "<td><a href='?page=cheque/cheque-modifier&id=".$object['id_cheque']."'><button>modifier</button></a></td>\n" ;
+        echo "<td><a href='?page=delete&id=".$object['id_cheque']."&table=".$table."'><button>supprimer</button></a></td>\n";
     echo "</tr>\n" ;
 }
 

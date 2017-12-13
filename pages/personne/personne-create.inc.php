@@ -17,7 +17,7 @@ use \DB\Personne;
 $object = new Personne();
 
 // Si il y a des données POST, on modifie l'objet en base et on redirige vers la page "liste objects"
-if ( isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['tel'])) {
+if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['tel'])) {
     $object->setNom($_POST['nom']);
     $object->setPrenom($_POST['prenom']);
     $object->setMail($_POST['mail']);
@@ -46,19 +46,19 @@ echo "<table>\n" ;
 echo "<tbody>\n" ;
 echo "<tr>\n" ;
 echo " <td>Nom<td>\n" ;
-echo " <td>",input_text('nom'),"<td>\n" ;
+echo " <td><input type='text' name='nom' required><td>\n" ;
 echo "</tr>\n" ;
 echo "<tr>\n" ;
 echo " <td>Prenom<td>\n" ;
-echo " <td>",input_text('prenom'),"<td>\n" ;
+echo " <td><input type='text' name='prenom' required><td>\n" ;
 echo "</tr>\n" ;
 echo "<tr>\n" ;
 echo " <td>Email<td>\n" ;
-echo " <td>",input_text('mail'),"<td>\n" ;
+echo " <td><input type='mail' name='mail'><td>\n" ;
 echo "</tr>\n" ;
 echo "<tr>\n" ;
 echo " <td>Tel<td>\n" ;
-echo " <td>",input_text('tel'),"<td>\n" ;
+echo " <td><input type='text' name='tel' required><td>\n" ;
 echo "</tr>\n" ;
 echo "</tbody>\n" ;
 echo "</table>\n" ;

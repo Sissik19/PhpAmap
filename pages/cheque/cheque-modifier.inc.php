@@ -25,6 +25,7 @@ if (isset($_POST['montant']) && isset($_POST['date_cheque'])) {
     $object->setIdPersonne($_POST['id_personne']);
     $object->setDateCheque($_POST['date_cheque']);
     $object->setMontant($_POST['montant']);
+    $object->setNumero($_POST['numero']);
     $object->save();
     require __DIR__.'/../../libs/http.lib.php' ;
     redirect('?page=cheque/cheque') ;
@@ -54,7 +55,7 @@ echo "<table>\n" ;
             echo " <td>\n";
                 echo"<select id='select' name='id_personne'>";
                         foreach ($tabPersonne as $personne){
-                            echo "<option value='".$personne['id_personne']."'>".$personne['nom']." ".$personne['prenom']."</option>";
+                            echo "<option value='".$personne->getIdPersonne()."'>".$personne->getNom()." ".$personne->getPrenom()."</option>";
                         }
                 echo"</select>\n";
             echo"</td>\n" ;
@@ -62,12 +63,17 @@ echo "<table>\n" ;
 
         echo "<tr>\n" ;
             echo " <td>Type<td>\n" ;
-            echo " <td>",input_text('date_cheque', $object->getDateCheque()),"<td>\n" ;
+            echo " <td><input type='date' name='date_cheque' value='".$object->getDateCheque()."'required><td>\n" ;
         echo "</tr>\n" ;
 
         echo "<tr>\n" ;
-            echo " <td>Poid<td>\n" ;
-            echo " <td>",input_text('montant', $object->getMontant()),"<td>\n" ;
+            echo " <td>Montant<td>\n" ;
+            echo " <td><input type='text' name='montant' value='".$object->getMontant()."'required><td>\n" ;
+        echo "</tr>\n" ;
+
+        echo "<tr>\n" ;
+            echo " <td>Numéro de chèque<td>\n" ;
+            echo " <td><input type='text' name='numero' value='".$object->getNumero()."'required><td>\n" ;
         echo "</tr>\n" ;
 
     echo "</tbody>\n" ;
