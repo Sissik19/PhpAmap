@@ -22,7 +22,7 @@
 				<div class="menu">
 					<ul>
 						<li class="page_item page-item-2"><a href="?page_id=2">Accueil</a></li>
-                        <li class="page_item page-item-3"><a href="?page=Personne/personne">Clients</a></li>
+                        <li class="page_item page-item-3"><a href="?page=personne/personne">Clients</a></li>
 						<li class="page_item page-item-46 page_item_has_children">
                             <a href="?page=commande/commande">Commandes</a>
                             <ul class="children">
@@ -35,8 +35,8 @@
                             </ul>
                         </li>
 
-                        <li class="page_item page-item-4"><a href="?page=Cheque/cheque">Chèques</a></li>
-                        <li class="page_item page-item-5"><a href="?page=Pain/pain">Pains</a></li>
+                        <li class="page_item page-item-4"><a href="?page=cheque/cheque">Chèques</a></li>
+                        <li class="page_item page-item-5"><a href="?page=pain/pain">Pains</a></li>
                         <li class="page_item page-item-5"><a href="?page=formation/test">Test</a></li>
 					</ul>
 				</div>

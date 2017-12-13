@@ -31,7 +31,7 @@ if (isset($_POST['prix_total']) && isset($_POST['date_commande'])) {
     $object->setPrixTotal($_POST['prix_total']);
     $object->save();
     require __DIR__.'/../../libs/http.lib.php' ;
-    redirect('?page=Commande/Commande') ;
+    redirect('?page=commande/Commande') ;
 }
 
 

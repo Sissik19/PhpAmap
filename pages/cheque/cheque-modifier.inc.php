@@ -27,7 +27,7 @@ if (isset($_POST['montant']) && isset($_POST['date_cheque'])) {
     $object->setMontant($_POST['montant']);
     $object->save();
     require __DIR__.'/../../libs/http.lib.php' ;
-    redirect('?page=Cheque/Cheque') ;
+    redirect('?page=cheque/cheque') ;
 }
 
 
