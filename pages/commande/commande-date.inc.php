@@ -14,21 +14,19 @@ $table = "commande";
 //
 // VUE
 //
-if(isset($_GET['date'])) {
-    echo "<form method='get'action='http://localhost/PHP/pages/commande/commande-date.inc.php?date=" . $_GET['date'] . ">";
-    echo "<input type='date' name='date''>\n" ;
-}
 
+echo "<form method='post'>";
+if(isset($_POST['date'])) {
+    echo "<input type='date' name='date' value='".$_POST['date']."'>\n";
+}
 else{
-    echo "<form method='get'>";
-    echo "<input type='date' name='date' value=''>\n" ;
+    echo "<input type='date' name='date' value=''>\n";
 }
-
-echo "<input type='submit' value='valider'>" ;
+    echo "<input type='submit' value='valider' name='submit'>" ;
 echo "</form>";
 
 
-    if (isset($_GET['date'])) {
+    if (isset($_POST['submit'])) {
         require_once __DIR__ . '/../../libs/html.lib.php';
         $doc = HtmlDocument::getCurrentInstance();
         $doc->addUniqueHeader('title', "<title>commande</title>");
@@ -48,19 +46,21 @@ echo "</form>";
         echo "</thead>\n";
         echo "<tbody>\n";
         foreach ($tabObject as $object) {
-            echo "<tr>\n";
+            if($object['date_commande']===$_POST['date']) {
+                echo "<tr>\n";
 
-            $personne = \DB\Personne::find($object['id_personne']);
-            $etat = \DB\Etat::find($object['id_etat']);
+                $personne = \DB\Personne::find($object['id_personne']);
+                $etat = \DB\Etat::find($object['id_etat']);
 
-            echo " <td>", htmlspecialchars($personne->getNom()), "</td>\n";
-            echo " <td>", htmlspecialchars($personne->getPrenom()), "</td>\n";
-            echo " <td>", htmlspecialchars($object['date_commande']), "</td>\n";
-            echo " <td>", htmlspecialchars($object['prix_total']), "</td>\n";
-            echo " <td>", htmlspecialchars($etat->getEtat()), "</td>\n";
-            echo "<td><a href='?page=commande/commande-modifier&id=" . $object['id_commande'] . "'><button>modifier</button></a></td>\n";
-            echo "<td><a href='?page=delete&id=" . $object['id_commande'] . "&table=" . $table . "'><button>supprimer</button></a></td>\n";
-            echo "</tr>\n";
+                echo " <td>", htmlspecialchars($personne->getNom()), "</td>\n";
+                echo " <td>", htmlspecialchars($personne->getPrenom()), "</td>\n";
+                echo " <td>", htmlspecialchars($object['date_commande']), "</td>\n";
+                echo " <td>", htmlspecialchars($object['prix_total']), "</td>\n";
+                echo " <td>", htmlspecialchars($etat->getEtat()), "</td>\n";
+                echo "<td><a href='?page=commande/commande-modifier&id=" . $object['id_commande'] . "'><button>modifier</button></a></td>\n";
+                echo "<td><a href='?page=delete&id=" . $object['id_commande'] . "&table=" . $table . "'><button>supprimer</button></a></td>\n";
+                echo "</tr>\n";
+            }
         }
 
         echo "</tbody>\n";
