@@ -10,9 +10,9 @@ use \PDO;
 
 class DbAmap extends PDO
 {
-    const USER = 'root';
-    const MDP = '';
-    const CONNECTION = '54.36.99.52';
+    const USER = 'data';
+    const MDP = 'Data';
+    const CONNECTION = 'localhost';
     const BDD = 'amapdata';
     private static $currentInstance;
 
