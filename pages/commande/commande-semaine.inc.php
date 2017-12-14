@@ -19,9 +19,6 @@ require_once __DIR__.'/../../libs/html.lib.php' ;
 use \DB\Commande;
 
 
-$objectList = new \DB\List_Pain();
-$objectCommande = new Commande();
-
 $tabAll = Commande::findAll();
 $size = count($tabAll);
 $tabPersonne = \DB\Personne::findAll();
@@ -29,17 +26,19 @@ $tabPain = \DB\Pain::findAll();
 
 
 // Si il y a des données POST, on modifie l'objet en base et on redirige vers la page "liste objects"
-if (isset($_POST['Valider']) && $_POST['date']) {
+if (isset($_POST['sub'])) {
     foreach ($tabPersonne as $personne){
         foreach ($tabPain as $pain){
-            echo $_POST[$personne->getIdPersonne()."-".$pain->getIdPain];
-            if(isset($_POST[$personne->getIdPersonne()."-".$pain->getIdPain])) {
+            $objectCommande = new Commande();
+            $objectList = new \DB\List_Pain();
+            echo $_POST[$personne->getIdPersonne()."-".$pain['id_pain']];
+            if(($_POST[$personne->getIdPersonne()."-".$pain['id_pain']])!=0) {
                 $objectCommande->setDateCommande($_POST['date']);
-                $objectCommande->setIdPersonne($personne->getIdPersonne);
+                $objectCommande->setIdPersonne($personne->getIdPersonne());
                 $objectCommande->setIdEtat(1);
                 $objectCommande->save();
 
-                $objectList->setIdPain($pain->getIdPain());
+                $objectList->setIdPain($pain['id_pain']);
                 $objectList->setIdCommande($objectCommande->getIdCommande());
                 $objectList->save();
             }
@@ -62,7 +61,7 @@ $DOCUMENT->addUniqueHeader('title', "<title>Commande : Modifier un Commande</tit
 
 echo "<h1>Passer la commande de la semaine</h1>\n" ;
 
-echo "<form method='post' >\n" ;
+echo "<form method='post'>\n" ;
 
 echo "<table>\n" ;
 echo "<tbody>\n" ;
@@ -82,7 +81,7 @@ echo "<tr>\n" ;
     echo "<th>Nom</th>";
     echo "<th>Prenom</th>";
     foreach ($tabPain as $pain){
-        echo "<th>".$pain['poid']."</th>";
+        echo "<th>".$pain['poid']."kg</th>";
     }
 echo "</tr>";
 
@@ -91,7 +90,7 @@ echo "</tr>";
         echo "<td>".$personne->getNom()."</td>";
         echo "<td>".$personne->getPrenom()."</td>";
         foreach ($tabPain as $item) {
-            echo "<td><input class='number' min='0' type='number' name='".$personne->getIdPersonne()."-".$item['id_pain']."'></td>";
+            echo "<td><input class='number' min='0' type='number' value='0' name='".$personne->getIdPersonne()."-".$item['id_pain']."'></td>";
         }
         echo "</tr>";
     }
@@ -104,7 +103,7 @@ echo "</tr>";
 echo "</tbody>\n" ;
 echo "</table>\n" ;
 
-echo "<p style='text-align:center'>",input_button("Valider"),"</p>" ;
+echo "<input type='submit' value='Valider' name='sub'>" ;
 
 echo "</form>\n" ;
 
